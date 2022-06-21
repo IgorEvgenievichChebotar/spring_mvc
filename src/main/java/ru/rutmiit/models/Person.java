@@ -1,15 +1,31 @@
 package ru.rutmiit.models;
 
+import javax.validation.constraints.*;
+
 public class Person {
     private int id;
+    @NotEmpty(message = "empty name")
+    @Size(min = 2, max = 30, message = "incorrect age")
     private String name;
 
+    @Min(value = 6, message = "incorrect age")
+    private int age;
+    @NotEmpty(message = "empty email")
+    @Email(message = "incorrect email")
+    private String email;
+
+    @NotEmpty(message = "empty address")
+    @Pattern(regexp = "[A-Z]\\w+, [A-Z]\\w+, \\d{6}", message = "Address format: Country, Town, index (6 digits)")
+    private String address;
     public Person() {
     }
 
-    public Person(int id, String name) {
+    public Person(int id, String name, int age, String email, String address) {
         this.id = id;
         this.name = name;
+        this.age = age;
+        this.email = email;
+        this.address = address;
     }
 
     public int getId() {
@@ -26,5 +42,29 @@ public class Person {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
